@@ -1,0 +1,25 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int findRank(string A) {
+    string B = A;
+    int i = 0;
+    string myints =A;
+    sort(myints.begin() , myints.end());
+
+       do {
+            i++;
+       cout<<i<<" "<<myints<<endl;
+            if(myints == A)return i ;
+  } while ( std::next_permutation(myints.begin(),myints.end()) );
+
+    return 0;
+}
+
+
+int main()
+{
+    cout << findRank("DTNGJPURFHYEW") << endl;
+    return 0;
+}
