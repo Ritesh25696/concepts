@@ -1,0 +1,54 @@
+The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+
+*****************************************************************************************************************************************************************
+
+bool isSafe(vector<vector<string>> &board, int row, int col)
+{
+    int i, j;
+ 
+    /* Check this row on left side */
+    for (i = 0; i < col; i++)
+        if (board[row][i]=="Q")
+            return false;
+ 
+    /* Check upper diagonal on left side */
+    for (i=row, j=col; i>=0 && j>=0; i--, j--)
+        if (board[i][j]=="Q")
+            return false;
+ 
+    /* Check lower diagonal on left side */
+    for (i=row, j=col; j>=0 && i<board.size(); i++, j--)
+        if (board[i][j]=="Q")
+            return false;
+ 
+    return true;
+}
+
+bool solveNQUtil(vector<vector<string>> &board, int col)
+{
+    if (col >= board.size())
+        return true;
+    for (int i = 0; i < board.size(); i++)
+    {
+        if ( isSafe(board, i, col) )
+        {
+            board[i][col] = 'Q';
+            if ( solveNQUtil(board, col + 1) )
+                return true;
+            board[i][col] = "."; 
+        }
+    }
+    return false;
+}
+
+vector<vector<string> > Solution::solveNQueens(int A) {
+ //vector<vector<string>> board(A , vector<int>(A,"."));
+ 
+ vector<vector<string>> board;
+ if(A<4 && A!=1)return board;
+ vector<string> res(A , ".");
+ int i = A;
+ while(i>0){board.push_back(res);i--;}
+ solveNQUtil(board , 0);
+ return board;
+}
