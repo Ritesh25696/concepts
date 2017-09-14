@@ -38,6 +38,7 @@ int cmin = INT_MAX;
             time += t[1];
             cout<<"l2 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
             if(dis == 0)cmin = min(cmin,time);
+            if(j == q-i){dis+=(q-i); time-=t[1]*(q-i); energy+=e[1]*(q-i);}
 
             for(int k=1 ; k<=q-i-j; k++){
                 energy -= e[2]*k;
@@ -47,6 +48,7 @@ int cmin = INT_MAX;
                 time += t[2];
                 cout<<"l3 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
                 if(dis == 0)cmin = min(cmin,time);
+                if(k == q-i-j){dis+=(q-i-j); time-=t[2]*(q-i-j); energy+=e[2]*(q-i-j);}
 
                 for(int l=1; l<=q-k-j-i; l++){
                     energy -= e[3]*l;
@@ -56,6 +58,7 @@ int cmin = INT_MAX;
                     time += t[3];
                     cout<<"l4 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
                     if(dis == 0)cmin = min(cmin,time);
+                    if(l == q-k-j-i){dis+=(q-k-j-i); time-=t[3]*(q-k-j-i); energy+=e[3]*(q-k-j-i);}
 
                     for(int m=1; m<=q-l-k-j-i ; m++){
                       energy -= e[4]*m;
@@ -65,6 +68,7 @@ int cmin = INT_MAX;
                       time += t[4];
                       cout<<"l5 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
                       if(dis == 0)cmin = min(cmin,time);
+                      if(m == q-l-k-j-i){dis+=(q-l-k-j-i); time-=t[4]*(q-l-k-j-i); energy+=e[4]*(q-l-k-j-i);}
                     }
                 }
             }
