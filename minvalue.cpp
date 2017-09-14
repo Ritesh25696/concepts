@@ -5,7 +5,7 @@
 #include<map>
 using namespace std;
 
-void mintime(vector<int> &e , vector<int>&t , int distance , int ene)  {
+void mintime(vector<int> &e , vector<int>&t , int distance , int ene , int cnt)  {
 int energy;
 int q = distance;
 map<int,int> mymap;
@@ -61,14 +61,26 @@ int cmin = INT_MAX;
             }
         }
        }
-       cout<<cmin<<endl;
+        cout<<"#"<<cnt<<" "<<cmin/60<<" "<<cmin%60<<endl;
     }
 
     int main(){
-    vector<int> e = {10,8,7,5,3};
-    vector<int> t = {1,2,3,4,5};
-    int distance = 5;
-    int ene = 50;
-    mintime(e,t,distance,ene);
+     int t;
+    cin>>t;
+    int z = 1;
+    while(t--){
+    int ene, distance;
+    cin>>ene>>distance;
+    vector<int> e , t , m;
+    for(int i=0 ; i<5 ; i++){
+        int a , b , c;
+        cin>>a>>b>>c;
+        e.push_back(c);
+        t.push_back(a*60 + b);
+    }
+    mintime(e,t,distance,ene,z);
+    z++;
+    }
+
     return 0;
     }
