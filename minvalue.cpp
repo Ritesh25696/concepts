@@ -21,40 +21,49 @@ for(auto i=mymap.begin() ; i!=mymap.end() ; i++){
 int dis;
 int time =0;
 int cmin = INT_MAX;
-       for(int i=0; i<=q ; i++){
+       for(int i=1; i<=q ; i++){
             energy = ene;
             dis = distance;
             energy -= e[0]*i;
-            if(energy < 0)break;
+            if(energy < 0 || dis < 0)break;
             dis-=i;
             time = t[0]*i;
+            cout<<"l1 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
             if(dis == 0)cmin = min(cmin,time);
-        for(int j=0; j<=q-i; j++){
+        for(int j=1; j<=q-i; j++){
             energy -= e[1]*j;
-            if(energy < 0)break;
-            dis-=j;
-            time += t[1]*j;
+            if(j != 1) energy+=e[1]*(j-1);
+            if(energy < 0 || dis < 0)break;
+            dis--;
+            time += t[1];
+            cout<<"l2 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
             if(dis == 0)cmin = min(cmin,time);
 
-            for(int k=0 ; k<=q-i-j; k++){
+            for(int k=1 ; k<=q-i-j; k++){
                 energy -= e[2]*k;
-                if(energy < 0)break;
-                dis-=k;
-                time += t[2]*k;
+                if(k != 1) energy+=e[2]*(k-1);
+                if(energy < 0 || dis < 0)break;
+                dis--;
+                time += t[2];
+                cout<<"l3 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
                 if(dis == 0)cmin = min(cmin,time);
 
-                for(int l=0; l<=q-k-j-i; l++){
+                for(int l=1; l<=q-k-j-i; l++){
                     energy -= e[3]*l;
-                    if(energy < 0)break;
-                    dis-=l;
-                    time += t[3]*l;
+                    if(energy < 0 || dis < 0)break;
+                    if(l != 1) energy+=e[3]*(l-1);
+                    dis--;
+                    time += t[3];
+                    cout<<"l4 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
                     if(dis == 0)cmin = min(cmin,time);
 
-                    for(int m=0; m<=q-l-k-j-i ; m++){
+                    for(int m=1; m<=q-l-k-j-i ; m++){
                       energy -= e[4]*m;
-                      if(energy < 0)break;
-                      dis-=m;
-                      time += t[4]*m;
+                      if(m != 1) energy+=e[4]*(m-1);
+                      if(energy < 0 || dis < 0)break;
+                      dis--;
+                      time += t[4];
+                      cout<<"l5 dis "<<dis<<" time "<<time<<" energy "<<energy<<endl;
                       if(dis == 0)cmin = min(cmin,time);
                     }
                 }
